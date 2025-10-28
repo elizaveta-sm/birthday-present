@@ -11,7 +11,7 @@ const App = () => {
   const audioRef = useRef(null);
 
   useEffect(() => {
-    audioRef.current = new Audio("/surprise-song.mp3");
+    audioRef.current = new Audio("/birthday-present/surprise-song.mp3");
     audioRef.current.loop = true;
   }, []);
 
