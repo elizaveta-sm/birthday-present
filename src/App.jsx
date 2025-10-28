@@ -17,20 +17,22 @@ const App = () => {
 
   const handleStart = () => {
     if (!musicStarted && audioRef.current) {
-      audioRef.current.play();
-      setMusicStarted(true);
+      audioRef.current
+        .play()
+        .then(() => setMusicStarted(true))
+        .catch((err) => console.warn("Autoplay blocked", err));
     }
     setPage(2);
   };
 
   return (
     <div className="app">
-      {" "}
-      {page === 1 && <StartPage onNext={handleStart} />}{" "}
-      {page === 2 && <CountdownPage onCountdownEnd={() => setPage(3)} />}{" "}
-      {page === 3 && <InputPage onSuccess={() => setPage(4)} />}{" "}
-      {page === 4 && <CongratsPage />}{" "}
+      {page === 1 && <StartPage onNext={handleStart} />}
+      {page === 2 && <CountdownPage onCountdownEnd={() => setPage(3)} />}
+      {page === 3 && <InputPage onSuccess={() => setPage(4)} />}
+      {page === 4 && <CongratsPage />}
     </div>
   );
 };
+
 export default App;
